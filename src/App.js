@@ -9,9 +9,12 @@ function App() {
   const [data, setData] = useState ([]);
 
   const handleClick = async () => {
+    console.log("Botón presionado");
     const signal = [1,0,-1,0,1,0,-1,0];//REEMPLAZAR POR VERDADERAS SEÑALES
 
-    const response = await axios.post('http://dft:8080/api/fourier', signal);
+    const response = await axios.post('http://localhost:8080/api/fourier', signal);
+    console.log("Response: ", response.data); //to test
+    setData(response.data);
     const formatted = response.data.map((value, index) => ({freq: index, magnitude: value}));
     setData(formatted);
   };
